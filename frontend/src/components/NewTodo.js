@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 //
 import * as userAPI from "../api/userAPI";
+import * as todoAPI from "../api/todoAPI";
 
 const NewTodo = () => {
   const [todo, setTodo] = useState({
@@ -12,6 +13,8 @@ const NewTodo = () => {
     date: new Date(),
   });
   const [userLists, setUserLists] = useState([]);
+  const [submitFlag, setSubmitFlag] = useState(false);
+  const [successFlag, setSuccessFlag] = useState(false);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -30,28 +33,41 @@ const NewTodo = () => {
     setTodo({ ...todo, date: date });
   };
 
-  const handleSubmit = () => {
-    console.log(todo);
+  const handleSubmit = async () => {
+    setSubmitFlag(true);
+    if (todo.username !== "" && todo.description !== "") {
+      let res = await todoAPI.addNew(todo);
+      console.log(res);
+      if (res === "Todo added") {
+        setTodo({
+          username: "",
+          description: "",
+          duration: 0,
+          date: new Date(),
+        });
+        setSuccessFlag(true);
+        setSubmitFlag(false);
+      }
+    }
   };
 
   return (
     <div>
-      {console.log(userLists)}
+      <label htmlFor="basic-url">User</label>
       <div className="input-group mb-3">
-        <div className="input-group-prepend">
-          <label className="input-group-text" htmlFor="user">
-            User
-          </label>
-        </div>
         <select
-          className="custom-select"
+          className={
+            "custom-select" +
+            (submitFlag && todo.username === "" ? " is-invalid" : "")
+          }
           id="user"
           name="username"
           value={todo.username}
           onChange={handleInput}
         >
+          <option value={""}>Select user...</option>
           {userLists.map((user) => (
-            <option value={user.username} key={user._id}>
+            <option value={user.username} key={user.id}>
               {user.username}
             </option>
           ))}
@@ -60,8 +76,12 @@ const NewTodo = () => {
       <label htmlFor="basic-url">Description</label>
       <div className="input-group mb-3">
         <input
+          autoComplete="off"
           type="text"
-          className="form-control"
+          className={
+            "form-control" +
+            (submitFlag && todo.description === "" ? " is-invalid" : "")
+          }
           name="description"
           value={todo.description}
           onChange={handleInput}
@@ -82,10 +102,15 @@ const NewTodo = () => {
         <DatePicker selected={todo.date} onChange={handleInputDate} />
       </div>
 
-      <div className="button-box">
+      <div className="button-box mt-5">
         <button type="button" className="btn btn-dark" onClick={handleSubmit}>
           submit
         </button>
+        {successFlag ? (
+          <div className="alert alert-success d-inline ml-3" role="alert">
+            Todo added
+          </div>
+        ) : null}
       </div>
     </div>
   );

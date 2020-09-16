@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [collapse, setCollapse] = useState(false);
+
+  const handleCollapse = () => {
+    setCollapse(!collapse);
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
@@ -16,12 +21,15 @@ const Navbar = () => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span className="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon" onClick={handleCollapse}></span>
       </button>
-      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div
+        className={"collapse navbar-collapse" + (collapse ? " show" : "")}
+        id="navbarNavAltMarkup"
+      >
         <div className="navbar-nav">
           <Link className="nav-link" to="/">
-            Home
+            Todo List
           </Link>
           <Link className="nav-link" to="/new">
             New Todo

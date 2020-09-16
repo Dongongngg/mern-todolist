@@ -24,25 +24,10 @@ export const getAll = () => {
           console.log(res.data);
           resolve(
             res.data.map((e) => {
-              let asd = { username: e.username, id: e._id };
-              return asd;
+              let user = { username: e.username, id: e._id };
+              return user;
             })
           );
-        } else {
-          reject(res.res);
-        }
-      })
-      .catch(reject);
-  });
-};
-
-export const getByFilter = (filter) => {
-  return new Promise((resolve, reject) => {
-    axios
-      .post("http://localhost:5000/users", filter)
-      .then((res) => {
-        if (res.status === 200) {
-          resolve(res.data);
         } else {
           reject(res.res);
         }
