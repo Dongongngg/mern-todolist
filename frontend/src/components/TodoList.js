@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 //
 import * as todoAPI from "../api/todoAPI";
+//
+import "../styles/TodoList.css";
 
 const TodoList = () => {
   const [lists, setLists] = useState([]);
@@ -27,7 +29,7 @@ const TodoList = () => {
   };
 
   return (
-    <div>
+    <div className="table-responsive-md">
       <table className="table table-hover">
         <thead className="thead-light">
           <tr>
@@ -46,14 +48,28 @@ const TodoList = () => {
             ? lists.map((list, i) => (
                 <tr key={list.id}>
                   <td>{i + 1}</td>
-                  <th scope="row">{list.username}</th>
+                  <td>{list.username}</td>
                   <td>{list.description}</td>
                   <td>{list.date}</td>
                   <td>{list.duration}</td>
                   <td>
-                    <Link to={`/edit/${list.id}`}>edit</Link>
+                    <Link to={`/edit/${list.id}`}>
+                      <button
+                        className="btn btn-outline-secondary btn-sm"
+                        onClick={() => handleDelete(list.id)}
+                      >
+                        Update
+                      </button>
+                    </Link>
                   </td>
-                  <td onClick={() => handleDelete(list.id)}>Delete</td>
+                  <td>
+                    <button
+                      className="btn btn-outline-secondary btn-sm"
+                      onClick={() => handleDelete(list.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))
             : null}
@@ -62,7 +78,7 @@ const TodoList = () => {
       {lists.length === 0 ? (
         <h4 style={{ textAlign: "center" }}>
           {"No todo in the database, create "}
-          <Link to="/user">new user</Link> {" ?"}
+          <Link to="/new">new todo</Link> {" ?"}
         </h4>
       ) : null}
     </div>

@@ -15,6 +15,33 @@ router.route("/add").post((req, res) => {
     .save()
     .then(() => res.json("User added"))
     .catch((err) => res.status(400).json("Error :" + err));
+
+  // newUser
+  //   .save()
+  //   .then(() => res.json({ Success: true, Msg: "User added" }))
+  //   .catch((err) => {
+  //     if (err.name === "MongoError" && err.code === 11000) {
+  //       res.status(400).send({ Success: false, Msg: "User exist" });
+  //     }
+  //     res.status(400).send({ Success: false, Msg: err });
+  //   });
+
+  // newUser.save((err) => {
+  //   if (err) {
+  //     if (err.name === "MongoError" && err.code === 11000) {
+  //       res.status(400).json({ Success: false, Msg: "User exist" });
+  //     }
+  //     res.status(400).json({ Success: false, Msg: err });
+  //   } else {
+  //     res.json({ Success: true, Msg: "User added" });
+  //   }
+  // });
+});
+//delete by id
+router.route("/:id").delete((req, res) => {
+  User.findByIdAndDelete(req.params.id)
+    .then(() => res.json("User deleted"))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 module.exports = router;

@@ -53,7 +53,7 @@ const NewTodo = () => {
 
   return (
     <div>
-      <label htmlFor="basic-url">User</label>
+      <label htmlFor="basic-url">User *</label>
       <div className="input-group mb-3">
         <select
           className={
@@ -73,7 +73,7 @@ const NewTodo = () => {
           ))}
         </select>
       </div>
-      <label htmlFor="basic-url">Description</label>
+      <label htmlFor="basic-url">Description *</label>
       <div className="input-group mb-3">
         <input
           autoComplete="off"
