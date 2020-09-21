@@ -21,16 +21,21 @@ const NewUser = () => {
     setUser({ ...user, [event.target.name]: value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setSubmitFlag(true);
     if (user.username !== "") {
-      const res = userAPI.addNew(user);
+      let res = await userAPI.addNew(user);
+      console.log(res);
 
-      if (res) {
+      if (res.status === 200) {
         setUser({
           username: "",
         });
-        setAlertMsg("user added");
+        setAlertMsg(res.data);
+        setAlertOpen(true);
+        setSubmitFlag(false);
+      } else {
+        setAlertMsg("User existed");
         setAlertOpen(true);
         setSubmitFlag(false);
       }
@@ -92,7 +97,11 @@ const NewUser = () => {
 
         {alertOpen ? (
           <div
-            className="alert alert-success ml-3 d-inline"
+            className={
+              "ml-3 d-inline alert " +
+              ((alertMsg === "User added" && "alert-success") ||
+                (alertMsg === "User existed" && "alert-danger"))
+            }
             role="alert"
             id="alert"
             ref={ref}

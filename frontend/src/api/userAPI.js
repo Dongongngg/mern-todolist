@@ -1,13 +1,15 @@
 import axios from "axios";
 
-export async function addNew(user) {
-  await axios
+export function addNew(user) {
+  const res = axios
     .post("http://localhost:5000/users/add", user)
-    .then((res) => {
+    .then((res) => res)
+    .catch((err) => {
+      console.log(err);
       console.log(res);
-      return res;
-    })
-    .catch((err) => err);
+      return err;
+    });
+  return res;
 }
 
 export const getAll = () => {

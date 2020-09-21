@@ -5,7 +5,7 @@ import * as userAPI from "../api/userAPI";
 //
 import "../styles/TodoList.css";
 
-const EditTodo = () => {
+const UserList = () => {
   const [lists, setLists] = useState([]);
 
   useEffect(() => {
@@ -75,14 +75,8 @@ const EditTodo = () => {
             : null}
         </tbody>
       </table>
-      {lists.length === 0 ? (
-        <h4 style={{ textAlign: "center" }}>
-          {"No todo in the database, create "}
-          <Link to="/new">new todo</Link> {" ?"}
-        </h4>
-      ) : null}
     </div>
   );
 };
 
-export default EditTodo;
+export default UserList;
