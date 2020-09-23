@@ -38,7 +38,7 @@ const Navbar = () => {
             New User
           </Link>
           <Link className="nav-link" to="/edit/:id">
-            Edit Todo
+            User List
           </Link>
         </div>
       </div>

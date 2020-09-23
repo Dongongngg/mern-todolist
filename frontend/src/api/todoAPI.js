@@ -5,7 +5,7 @@ export const addNew = (user) => {
     axios
       .post("http://localhost:5000/todos/add", user)
       .then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           resolve(res.data);
         } else {
           reject(res.res);
@@ -20,7 +20,7 @@ export const getAll = () => {
     axios
       .get("http://localhost:5000/todos/")
       .then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           resolve(
             res.data.map((e) => {
               let list = {
@@ -46,7 +46,7 @@ export const getById = (id) => {
     axios
       .get(`http://localhost:5000/todos/${id}`)
       .then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           resolve(res.data);
         } else {
           reject(res.res);
@@ -61,7 +61,7 @@ export const deleteById = (id) => {
     axios
       .delete(`http://localhost:5000/todos/${id}`)
       .then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           resolve(res.data);
         } else {
           reject(res.res);
@@ -76,7 +76,7 @@ export const deleteById = (id) => {
 //     axios
 //       .get("http://localhost:5000/", filter)
 //       .then((res) => {
-//         if (res.status == 200) {
+//         if (res.status === 200) {
 //           resolve(res.data);
 //         } else {
 //           reject(res.res);

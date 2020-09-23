@@ -14,12 +14,11 @@ const UserList = () => {
       setLists(res);
     };
     getList();
-    console.log(lists);
   }, []);
 
   //delete
   const handleDelete = async (id) => {
-    let res = await userAPI.deleteById(id);
+    await userAPI.deleteById(id);
     const getList = async () => {
       let res = await userAPI.getAll();
       setLists(res);

@@ -37,7 +37,7 @@ export const deleteById = (id) => {
     axios
       .delete(`http://localhost:5000/users/${id}`)
       .then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           resolve(res.data);
         } else {
           reject(res.res);

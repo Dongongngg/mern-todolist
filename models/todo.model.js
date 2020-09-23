@@ -9,7 +9,7 @@ const todoSchema = new Schema(
       required: true,
     },
     description: { type: String, required: true },
-    date: { type: String, Date: true },
+    date: { type: Date, required: true },
     duration: { type: Number, required: true },
   },
   {

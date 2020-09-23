@@ -6,11 +6,12 @@ import * as userAPI from "../api/userAPI";
 import * as todoAPI from "../api/todoAPI";
 
 const NewTodo = () => {
+  const today = new Date();
   const [todo, setTodo] = useState({
     username: "",
     description: "",
     duration: 0,
-    date: new Date(),
+    date: today,
   });
   const [userLists, setUserLists] = useState([]);
   const [submitFlag, setSubmitFlag] = useState(false);

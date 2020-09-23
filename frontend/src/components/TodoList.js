@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 //
 import * as todoAPI from "../api/todoAPI";
 //
@@ -7,9 +8,9 @@ import "../styles/TodoList.css";
 
 const Loading = () => {
   return (
-    <div class="d-flex my-3 justify-content-center">
-      <div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
+    <div className="d-flex my-3 justify-content-center">
+      <div className="spinner-border" role="status">
+        <span className="sr-only">Loading...</span>
       </div>
     </div>
   );
@@ -50,7 +51,7 @@ const TodoList = () => {
         )
       );
     }
-  }, [filterInputs]);
+  }, [filterInputs, lists]);
 
   useEffect(() => {
     if (filterLists.length === 0) {
@@ -73,7 +74,7 @@ const TodoList = () => {
 
   //delete btn
   const handleDelete = async (id) => {
-    let res = await todoAPI.deleteById(id);
+    await todoAPI.deleteById(id);
     const getList = async () => {
       let res = await todoAPI.getAll();
       setLists(res);
@@ -135,7 +136,7 @@ const TodoList = () => {
                     <td>{i + 1}</td>
                     <td>{list.username}</td>
                     <td>{list.description}</td>
-                    <td>{list.date}</td>
+                    <td>{moment(list.date).format("DD-MM-YYYY")}</td>
                     <td>{list.duration}</td>
                     <td>
                       <Link to={`/edit/${list.id}`}>
