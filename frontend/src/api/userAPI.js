@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function addNew(user) {
   const res = axios
-    .post("http://localhost:5000/users/add", user)
+    .post("https://afternoon-inlet-07962.herokuapp.com/users/add", user)
     .then((res) => res)
     .catch((err) => {
       console.log(err);
@@ -15,7 +15,7 @@ export function addNew(user) {
 export const getAll = () => {
   return new Promise((resolve, reject) => {
     axios
-      .get("http://localhost:5000/users/")
+      .get("https://afternoon-inlet-07962.herokuapp.com/users/")
       .then((res) => {
         if (res.status === 200) {
           resolve(
@@ -35,7 +35,7 @@ export const getAll = () => {
 export const deleteById = (id) => {
   return new Promise((resolve, reject) => {
     axios
-      .delete(`http://localhost:5000/users/${id}`)
+      .delete(`https://afternoon-inlet-07962.herokuapp.com/api/users/${id}`)
       .then((res) => {
         if (res.status === 200) {
           resolve(res.data);

@@ -11,31 +11,6 @@ router.route("/add").post(async (req, res) => {
   const username = req.body.username;
   const newUser = new User({ username });
 
-  // newUser
-  //   .save()
-  //   .then(() => res.json("User added"))
-  //   .catch((err) => res.status(400).json("Error :" + err));
-
-  // newUser
-  //   .save()
-  //   .then(() => res.json({ Success: true, Msg: "User added" }))
-  //   .catch((err) => {
-  //     if (err.name === "MongoError" && err.code === 11000) {
-  //       res.status(400).send({ Success: false, Msg: "User exist" });
-  //     }
-  //     res.status(400).send({ Success: false, Msg: err });
-  //   });
-
-  // newUser.save((err) => {
-  //   if (err) {
-  //     if (err.name === "MongoError" && err.code === 11000) {
-  //       res.status(400).json({ Success: false, Msg: "User exist" });
-  //     }
-  //     res.status(400).json({ Success: false, Msg: err });
-  //   } else {
-  //     res.json({ Success: true, Msg: "User added" });
-  //   }
-  // });
   const isExisted = await User.findOne({ username: username }, (err, res) => {
     if (err) {
       console.log(err);

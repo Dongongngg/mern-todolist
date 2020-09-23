@@ -3,7 +3,7 @@ import axios from "axios";
 export const addNew = (user) => {
   return new Promise((resolve, reject) => {
     axios
-      .post("http://localhost:5000/todos/add", user)
+      .post("https://afternoon-inlet-07962.herokuapp.com/todos/add", user)
       .then((res) => {
         if (res.status === 200) {
           resolve(res.data);
@@ -18,7 +18,7 @@ export const addNew = (user) => {
 export const getAll = () => {
   return new Promise((resolve, reject) => {
     axios
-      .get("http://localhost:5000/todos/")
+      .get("https://afternoon-inlet-07962.herokuapp.com/todos/")
       .then((res) => {
         if (res.status === 200) {
           resolve(
@@ -44,7 +44,7 @@ export const getAll = () => {
 export const getById = (id) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(`http://localhost:5000/todos/${id}`)
+      .get(`https://afternoon-inlet-07962.herokuapp.com/todos/${id}`)
       .then((res) => {
         if (res.status === 200) {
           resolve(res.data);
@@ -59,7 +59,7 @@ export const getById = (id) => {
 export const deleteById = (id) => {
   return new Promise((resolve, reject) => {
     axios
-      .delete(`http://localhost:5000/todos/${id}`)
+      .delete(`https://afternoon-inlet-07962.herokuapp.com/todos/${id}`)
       .then((res) => {
         if (res.status === 200) {
           resolve(res.data);
@@ -74,7 +74,7 @@ export const deleteById = (id) => {
 // export const getByFilter = (filter) => {
 //   return new Promise((resolve, reject) => {
 //     axios
-//       .get("http://localhost:5000/", filter)
+//       .get("https://afternoon-inlet-07962.herokuapp.com/", filter)
 //       .then((res) => {
 //         if (res.status === 200) {
 //           resolve(res.data);
