@@ -1,8 +1,9 @@
 import axios from "axios";
+import Api_prefix from "../url";
 
 export function addNew(user) {
   const res = axios
-    .post("https://afternoon-inlet-07962.herokuapp.com/users/add", user)
+    .post(Api_prefix + "/users/add", user)
     .then((res) => res)
     .catch((err) => {
       console.log(err);
@@ -15,7 +16,7 @@ export function addNew(user) {
 export const getAll = () => {
   return new Promise((resolve, reject) => {
     axios
-      .get("https://afternoon-inlet-07962.herokuapp.com/users/")
+      .get(Api_prefix + "/users/")
       .then((res) => {
         if (res.status === 200) {
           resolve(

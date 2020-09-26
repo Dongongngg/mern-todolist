@@ -1,9 +1,10 @@
 import axios from "axios";
+import Api_prefix from "../url";
 
 export const addNew = (user) => {
   return new Promise((resolve, reject) => {
     axios
-      .post("https://afternoon-inlet-07962.herokuapp.com/todos/add", user)
+      .post(Api_prefix + "/todos/add", user)
       .then((res) => {
         if (res.status === 200) {
           resolve(res.data);
@@ -18,7 +19,7 @@ export const addNew = (user) => {
 export const getAll = () => {
   return new Promise((resolve, reject) => {
     axios
-      .get("https://afternoon-inlet-07962.herokuapp.com/todos/")
+      .get(Api_prefix + "/todos/")
       .then((res) => {
         if (res.status === 200) {
           resolve(
@@ -44,7 +45,7 @@ export const getAll = () => {
 export const getById = (id) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(`https://afternoon-inlet-07962.herokuapp.com/todos/${id}`)
+      .get(Api_prefix + `/todos/${id}`)
       .then((res) => {
         if (res.status === 200) {
           resolve(res.data);
@@ -59,7 +60,7 @@ export const getById = (id) => {
 export const deleteById = (id) => {
   return new Promise((resolve, reject) => {
     axios
-      .delete(`https://afternoon-inlet-07962.herokuapp.com/todos/${id}`)
+      .delete(Api_prefix + `/todos/${id}`)
       .then((res) => {
         if (res.status === 200) {
           resolve(res.data);
@@ -74,7 +75,7 @@ export const deleteById = (id) => {
 // export const getByFilter = (filter) => {
 //   return new Promise((resolve, reject) => {
 //     axios
-//       .get("https://afternoon-inlet-07962.herokuapp.com/", filter)
+//       .get(Api_prefix+"/", filter)
 //       .then((res) => {
 //         if (res.status === 200) {
 //           resolve(res.data);

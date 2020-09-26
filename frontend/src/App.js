@@ -14,6 +14,7 @@ const App = () => {
       <div className="container">
         <Navbar />
         <br />
+
         <Route path="/" exact component={TodoList} />
         <Route path="/edit/:id" component={userList} />
         <Route path="/new" component={NewTodo} />
